@@ -11,17 +11,17 @@ for lines in f:
 
 def firstPart(data):
     row = data[0]
-    word = row[0]
+    node = row[0]
 
     i = 0
     while i < len(data):
-        if(data[i] != row and word in data[i]):
+        if(data[i] != row and node in data[i]):
             row = data[i]
-            word = row[0]
+            node = row[0]
             i = 0
         else:
             i += 1
-    return word
+    return node
 
 def weightR(node, tree):
     sumWeight = 0
@@ -50,7 +50,7 @@ def secondPart(data, node):
 
     for children in tree[repeated[repeated.index(node)-1]][1]:
         if(children != node):
-            weight = weightR(tree[repeated[repeated.index(node)-1]][1][0],tree)
+            weight = weightR(children,tree)
             break
     return tree[node][0] - abs(weight - weightR(node,tree))
 
