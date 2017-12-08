@@ -48,7 +48,11 @@ def secondPart(data, node):
             if(weight != weight_to_compare):
                 node = sons
 
-    return tree[node][0] - abs(weightR(tree[repeated[repeated.index(node)-1]][1][0],tree) - weightR(node,tree))
+    for children in tree[repeated[repeated.index(node)-1]][1]:
+        if(children != node):
+            weight = weightR(tree[repeated[repeated.index(node)-1]][1][0],tree)
+            break
+    return tree[node][0] - abs(weight - weightR(node,tree))
 
 root = firstPart(data)
 print("First part:",root)
