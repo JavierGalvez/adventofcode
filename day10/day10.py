@@ -26,17 +26,16 @@ def secondPart():
         asciicode.append(ord(characters))
     asciicode += [17,31,73,47,23]
     pos = skip = 0
-    for i in range(64):
+    for _ in range(64):
         for l in asciicode:
-            if pos + l > len(numbers):
-                dif = pos + l - len(numbers)
-                sub = numbers[pos:256] + numbers[0:dif]
+            if pos + l > 256:
+                sub = numbers[pos:256] + numbers[0:pos + l - 256]
             else:
                 sub = numbers[pos:pos+l]
             sub = sub[::-1]
             for n in sub:
-                numbers[(pos + sub.index(n)) % len(numbers)] = n
-            pos = (pos + l + skip) % len(numbers)
+                numbers[(pos + sub.index(n)) % 256] = n
+            pos = (pos + l + skip) % 256
             skip += 1
 
     denseHash = []
@@ -44,12 +43,9 @@ def secondPart():
         xor = numbers[16 * i]
         for n in numbers[16 * i + 1: 16 * i + 16]:
             xor ^= n
-        denseHash.append(xor)
-        
-    ret = ''
-    for val in denseHash:
-        ret += str(format(val, '02x'))
-    return ret
+        denseHash.append(format(xor, '02x'))
+
+    return ''.join(denseHash)
 
 print('First part:',firstPart())
 print('Second part:',secondPart())
