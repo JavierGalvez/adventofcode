@@ -28,12 +28,39 @@ def knothash(string):
 
 def firstPart(string):
     used = 0
+    ret = []
     for i in range(128):
         hash = knothash(string + '-' + str(i))
         binHash = bin(int(hash,16))[2:].zfill(128)
+        ret.append(list(binHash))
         used += sum(int(k) for k in binHash)
-    return used
+    return (used, ret)
+
+def regions(x, y, grid):
+    if grid[x][y] == '0':
+        return
+    grid[x][y] = '0'
+    if x > 0:
+        regions(x-1, y, grid)
+    if x + 1 < 128:
+        regions(x+1, y, grid)
+    if y > 0:
+        regions(x, y-1, grid)
+    if y + 1 < 128:
+        regions(x, y+1, grid)
+
+
+def secondPart(grid):
+    count = 0
+    for i in range(128):
+        for j in range(128):
+            if grid[i][j] == '1':
+                regions(i,j,grid)
+                count += 1
+    return count;
 
 
 input = 'jxqlasbh'
-print('First part:', firstPart(input))
+used, grid = firstPart(input)
+print('First part:', used)
+print('Second part:', secondPart(grid))
