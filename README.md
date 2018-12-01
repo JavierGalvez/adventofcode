@@ -1,3 +1,3 @@
-# Advent of code
+# Advent of Code
 
-[Advent of code (2017)](http://adventofcode.com/) problems solved using python
+[Advent of Code](https://adventofcode.com) problems solved using python
