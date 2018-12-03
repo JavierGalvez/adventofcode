@@ -5,10 +5,10 @@ overlaps = defaultdict(int)
 
 for claim in open('input.txt'):
    claim = claim.replace('@', '').split()
-   id = int(claim[0][1:])
+   identifier = int(claim[0][1:])
    loff, toff = map(int, claim[1][:-1].split(','))
    width, height = map(int, claim[2].split('x'))
-   input.append([id, loff, toff, width, height])
+   input.append([identifier, loff, toff, width, height])
 
    for i in range(width):
       for j in range(height):

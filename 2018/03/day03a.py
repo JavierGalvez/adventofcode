@@ -3,7 +3,6 @@ from collections import defaultdict
 overlaps = defaultdict(int)
 for claim in open('input.txt'):
    claim = claim.replace('@','').split()
-   id = int(claim[0][1:])
    loff, toff = map(int, claim[1][:-1].split(','))
    width, height = map(int, claim[2].split('x'))
    for i in range(width):
