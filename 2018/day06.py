@@ -11,13 +11,13 @@ max_y = max(input, key=lambda a: a[1])[1] + 1
 infinite = {(-1, -1)}
 grid = {}
 areas = defaultdict(int)
-save_region = []
+safe_region = []
 
 for x in range(max_x):
    for y in range(max_y):
       distances = [manhattan((x,y), point) for point in input]
       if sum(distances) < 10000:
-         save_region.append((x, y))
+         safe_region.append((x, y))
 
       shortest_dist = min(distances)
       closest_points = [ point for i, point in enumerate(input) if distances[i] == shortest_dist ]
@@ -33,4 +33,4 @@ for x in range(max_x):
             infinite.add(points)
 
 print('Part 1:', max(areas.items(), key=lambda a: a[1] if a[0] not in infinite else 0)[1])
-print('Part 2:', len(save_region))
+print('Part 2:', len(safe_region))
