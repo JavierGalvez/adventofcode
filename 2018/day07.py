@@ -15,15 +15,18 @@ def assign_job(jobs):
    job, waitlist = min(jobs.items(), key=lambda x: len(x[1]))
    return job if not waitlist else None
 
+def job_done(j, jobs):
+   for k, v in jobs.items():
+      if j in v:
+         v.remove(j)
+
 def order (data):
    order = ''
    while data:
       p = assign_job(data)
       del data[p]
       order += p
-      for k, v in data.items():
-         if p in v:
-            v.remove(p)
+      job_done(p, data)
    return order
 
 def get_time(c):
@@ -36,9 +39,7 @@ def time (data, n):
       for c in workers:
          if time == get_time(c[0]) + c[1]:
             workers.remove(c)
-            for k, v in data.items():
-               if c[0] in v:
-                  v.remove(c[0])
+            job_done(c[0], data)
       for i in range(n - len(workers)):
          if data:
             p = assign_job(data)
