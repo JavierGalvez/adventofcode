@@ -15,7 +15,7 @@ def helper(data):
 	if num_branches == 0:
 		return sum_metadata, data[num_metadata:], sum_metadata
 	else:
-		return sum_metadata, data[num_metadata:], sum(values[k-1] for k in data[:num_metadata] if k-1 < num_branches)
+		return sum_metadata, data[num_metadata:], sum(values[k-1] for k in data[:num_metadata] if k-1 < num_branches and k > 0)
 	
 sum_metadatas, _, root_value = helper(data)
 print('Part 1:', sum_metadatas)
