@@ -1,5 +1,6 @@
 from collections import defaultdict
 from collections import deque
+from re import findall
 
 data = open('inputs/9.txt').read().split()
 
@@ -15,6 +16,6 @@ def play(player, n):
 			marbles.append(k)
 	return max(scores.values())
 
-players, marbles = int(data[0]), int(data[6])
+players, marbles = map(int, findall('\d+', open('inputs/9.txt').read()))
 print('Part 1:', play(players, marbles))
 print('Part 2:', play(players, marbles*100))
