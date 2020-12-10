@@ -9,4 +9,4 @@ diffs = [x-y for x, y in zip(data[1:], data)]
 swap = {2: 2, 3: 4, 4: 7}
 
 print("Part 1: %d" % (diffs.count(1) * diffs.count(3)))
-print("Part 2: %d" % reduce(lambda x, y: x*y, map(swap.get, [n for i, n in run_length.encode(diffs) if i == 1 and n > 1])))
+print("Part 2: %d" % reduce(lambda x, y: x*y, [swap[n] for i, n in run_length.encode(diffs) if i == 1 and n > 1]))
