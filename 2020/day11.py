@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 data = input()
 data = data.split("\n")
 
@@ -37,7 +35,7 @@ def check_in_sight(x, y, data):
     
 def occupied_seats(data, func_occupied, max_occupied):
     swap = {"#": "L", "L": "#"}
-    aux = deepcopy(data)
+    aux = data.copy()
     change = True
     while change:
         change = False
@@ -47,7 +45,7 @@ def occupied_seats(data, func_occupied, max_occupied):
                 if (occupied == 0 and seat == "L") or (occupied >= max_occupied and seat == "#"):
                     aux[i] = aux[i][:j] + swap[seat] + aux[i][j+1:]
                     change = True
-        data = deepcopy(aux)
+        data = aux.copy()
         
     return sum(map(lambda x: x.count("#"), data))
 
